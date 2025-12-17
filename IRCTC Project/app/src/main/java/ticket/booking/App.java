@@ -3,11 +3,10 @@
  */
 package ticket.booking;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class App {
-    public String getGreeting() {
-
-    }
-
     public static void main(String[] args) {
 
     }

@@ -7,6 +7,7 @@ import org.ticket.booking.system.model.User;
 import org.ticket.booking.system.repository.TicketRepository;
 import org.ticket.booking.system.repository.TrainRepository;
 import org.ticket.booking.system.repository.UserRepository;
+import org.ticket.booking.system.service.UserService;
 
 import java.util.List;
 
@@ -41,5 +42,9 @@ public class Main {
         TicketRepository ticketRepo = new TicketRepository();
 
         System.out.println(gson.toJson(ticketRepo.fetchTicketsByUserId("user-uuid-12345")));
+
+        UserService userSer = new UserService();
+
+        userSer.login("ajphe01","012");
     }
 }

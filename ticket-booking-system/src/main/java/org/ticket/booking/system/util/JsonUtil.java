@@ -13,7 +13,7 @@ import java.util.List;
 
 public class JsonUtil {
 
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static <T> List<T> readJSON(Type list, String filePath)
     {

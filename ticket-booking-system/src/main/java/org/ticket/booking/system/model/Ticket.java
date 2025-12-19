@@ -55,9 +55,13 @@ public class Ticket {
         return status;
     }
 
+    public void setStatus(String status) { this.status = status; }
+
     public void cancelTicket() {
         this.status = "CANCELLED";
     }
+
+
 
     @Override
     public String toString() {

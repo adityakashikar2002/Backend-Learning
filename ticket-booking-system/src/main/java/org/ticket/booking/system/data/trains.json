@@ -1,0 +1,38 @@
+[
+  {
+    "trainId": "7e3b6e82-1234-4a55-8c77-9a0b1c2d3e4f",
+    "trainNumber": "12301",
+    "trainName": "Rajdhani Express",
+    "source": "New Delhi",
+    "destination": "Kolkata",
+    "stations": ["New Delhi", "Kanpur Central", "Prayagraj", "Gaya", "Kolkata"],
+    "departureTime": "16:50",
+    "arrivalTime": "10:50",
+    "totalSeats": 300,
+    "availableSeats": 45
+  },
+  {
+    "trainId": "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+    "trainNumber": "12002",
+    "trainName": "Bhopal Shatabdi",
+    "source": "New Delhi",
+    "destination": "Bhopal",
+    "stations": ["New Delhi", "Mathura", "Agra", "Gwalior", "Jhansi", "Bhopal"],
+    "departureTime": "06:00",
+    "arrivalTime": "14:40",
+    "totalSeats": 500,
+    "availableSeats": 120
+  },
+  {
+    "trainId": "f9e8d7c6-b5a4-3210-9876-54321fedcba0",
+    "trainNumber": "12951",
+    "trainName": "Mumbai Rajdhani",
+    "source": "Mumbai",
+    "destination": "New Delhi",
+    "stations": ["Mumbai Central", "Surat", "Vadodara", "Ratlam", "Kota", "New Delhi"],
+    "departureTime": "17:00",
+    "arrivalTime": "08:35",
+    "totalSeats": 400,
+    "availableSeats": 15
+  }
+]

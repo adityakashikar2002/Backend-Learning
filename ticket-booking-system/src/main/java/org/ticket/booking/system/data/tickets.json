@@ -1,0 +1,29 @@
+[
+  {
+    "ticketId": "tick-8899-0011",
+    "userId": "user-uuid-12345",
+    "trainId": "7e3b6e82-1234-4a55-8c77-9a0b1c2d3e4f",
+    "seatNumber": 14,
+    "journeyDate": "2025-12-25",
+    "bookingDate": "2025-12-10",
+    "status": "BOOKED"
+  },
+  {
+    "ticketId": "tick-5544-2233",
+    "userId": "user-uuid-67890",
+    "trainId": "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+    "seatNumber": 102,
+    "journeyDate": "2025-12-28",
+    "bookingDate": "2025-12-15",
+    "status": "BOOKED"
+  },
+  {
+    "ticketId": "tick-1122-9988",
+    "userId": "user-uuid-12345",
+    "trainId": "f9e8d7c6-b5a4-3210-9876-54321fedcba0",
+    "seatNumber": 45,
+    "journeyDate": "2026-01-05",
+    "bookingDate": "2025-12-18",
+    "status": "CANCELLED"
+  }
+]

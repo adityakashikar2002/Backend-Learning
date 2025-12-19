@@ -18,33 +18,37 @@ public class Main {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        UserRepository userRepo = new UserRepository();
-
-        List<User> list = userRepo.getUsers();
-
-        System.out.println(list);
-
-//        User user = new User("Satish","sat0892","h674","2025-12-17");
-//        userRepo.addUser(user);
-
-        list = userRepo.getUsers();
-
-        System.out.println(list);
-
-        TrainRepository trainRepo = new TrainRepository();
-
-        List<Train> trains = trainRepo.getTrains();
-
-        //        System.out.println(trains);
-
-        System.out.println(trainRepo.searchBySourceAndDestination("New Delhi", "Bhopal"));
+//        UserRepository userRepo = new UserRepository();
+//
+//        List<User> list = userRepo.getUsers();
+//
+//        System.out.println(list);
+//
+////        User user = new User("Satish","sat0892","h674","2025-12-17");
+////        userRepo.addUser(user);
+//
+//        list = userRepo.getUsers();
+//
+//        System.out.println(list);
+//
+//        TrainRepository trainRepo = new TrainRepository();
+//
+//        List<Train> trains = trainRepo.getTrains();
+//
+//        //        System.out.println(trains);
+//
+//        System.out.println(trainRepo.searchBySourceAndDestination("New Delhi", "Bhopal"));
+//
+//        TicketRepository ticketRepo = new TicketRepository();
+//
+//        System.out.println(gson.toJson(ticketRepo.fetchTicketsByUserId("user-uuid-12345")));
+//
+//        UserService userSer = new UserService();
+//
+//        userSer.login("ajphe01","012");
 
         TicketRepository ticketRepo = new TicketRepository();
 
-        System.out.println(gson.toJson(ticketRepo.fetchTicketsByUserId("user-uuid-12345")));
-
-        UserService userSer = new UserService();
-
-        userSer.login("ajphe01","012");
+        ticketRepo.updateStatus("tick-1122-9988");
     }
 }

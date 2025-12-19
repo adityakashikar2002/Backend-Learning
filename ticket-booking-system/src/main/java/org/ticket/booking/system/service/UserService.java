@@ -30,8 +30,6 @@ public class UserService {
             }
         }
 
-
-
         String hashedPass = PasswordUtil.hashPassword(password);
 
         User user = new User(name, username, hashedPass, DateUtil.dateToString(currentDateTime));
@@ -43,22 +41,14 @@ public class UserService {
 
     public void login(String username, String password) {
         List<User> users = userRepo.getUsers();
+
         String hashedPass = PasswordUtil.hashPassword(password);
-        boolean loggedIn = false;
-        User user1 = new User();
+        User user = userRepo.getUserByUserName(username);
 
-        for(User user : users) {
-            if(user.getUsername().equals(username) && user.getPasswordHash().equals(hashedPass))
-            {
-                user1 = user;
-                loggedIn = true;
-                break;
-            }
-        }
-
-        if(loggedIn) {
-            System.out.println("Login Successfull !!");
-            System.out.println("Welcome " + user1.getName());
+        if(user != null && user.getUsername().equals(username) && user.getPasswordHash().equals(hashedPass))
+        {
+            System.out.println("Login Successful !!");
+            System.out.println("Welcome " + user.getName());
         }
         else
             System.out.println("Login Failed");

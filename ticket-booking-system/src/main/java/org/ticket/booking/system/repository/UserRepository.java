@@ -3,17 +3,17 @@ package org.ticket.booking.system.repository;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.ticket.booking.system.model.User;
 import com.google.gson.reflect.TypeToken;
+import org.ticket.booking.system.util.ConfigLoader;
 import org.ticket.booking.system.util.JsonUtil;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository {
     private static final Dotenv dotenv = Dotenv.load();
 
     private static final Type USER_LIST_TYPE = new TypeToken<List<User>>() {}.getType();
-    private static final String BASE_PATH = dotenv.get("FILE_PATH");
+    private static final String BASE_PATH = ConfigLoader.getFilePath();
     // private static final String BASE_PATH = "src/main/java/org/ticket/booking/system/data";
     private static final  String USER_FILE_PATH = BASE_PATH + "/users.json";
 
@@ -29,7 +29,7 @@ public class UserRepository {
         List<User> users = getUsers();
 
         for(User user : users) {
-            if(user.getUsername().equals(userName))
+            if(user.getUsername().equalsIgnoreCase(userName))
                 return user;
         }
 

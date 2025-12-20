@@ -22,7 +22,8 @@ public class JsonUtil {
 
             List<T> data = gson.fromJson(reader, list);
 
-            return data;
+            return data != null ? data : new ArrayList<>();
+
         }
         catch (IOException e) {
             return new ArrayList<>();

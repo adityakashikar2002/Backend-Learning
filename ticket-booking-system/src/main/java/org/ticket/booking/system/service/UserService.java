@@ -12,21 +12,25 @@ import java.util.List;
 
 public class UserService {
 
-    UserRepository userRepo = new UserRepository();
+    private final UserRepository userRepo;
 
+    public UserService(UserRepository userRepo) {
+        this.userRepo = userRepo;
+    }
 
-    public void signUp(String name, String username, String password) {
-        if(name.length() == 0 || username.length() == 0 || password.length() == 0)
-        {
-            return;
+    public boolean signUp(String name, String username, String password) {
+        boolean success = false;
+        if(name.length() == 0 || username.length() == 0 || password.length() == 0) {
+            return success;
         }
+
         List<User> users = userRepo.getUsers();
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         for(User user : users) {
-            if(user.getUsername().equals(username)) {
+            if(user.getUsername().equalsIgnoreCase(username)) {
                 System.out.println("Username already taken !!");
-                return;
+                return success;
             }
         }
 
@@ -35,22 +39,21 @@ public class UserService {
         User user = new User(name, username, hashedPass, DateUtil.dateToString(currentDateTime));
 
         userRepo.addUser(user);
+        success = true;
 
-        System.out.println("Sign Up Successfull !!");
+        return success;
     }
 
-    public void login(String username, String password) {
-        List<User> users = userRepo.getUsers();
+    public User login(String username, String password) {
 
         String hashedPass = PasswordUtil.hashPassword(password);
         User user = userRepo.getUserByUserName(username);
 
-        if(user != null && user.getUsername().equals(username) && user.getPasswordHash().equals(hashedPass))
+        if(user != null && user.getPasswordHash().equals(hashedPass))
         {
-            System.out.println("Login Successful !!");
-            System.out.println("Welcome " + user.getName());
+            return user;
         }
-        else
-            System.out.println("Login Failed");
+
+        return null;
     }
 }

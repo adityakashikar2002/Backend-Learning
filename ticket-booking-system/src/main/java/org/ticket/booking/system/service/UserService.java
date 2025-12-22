@@ -25,7 +25,7 @@ public class UserService {
         }
 
         List<User> users = userRepo.getUsers();
-        LocalDateTime currentDateTime = LocalDateTime.now();
+        LocalDate currentDate = LocalDate.now();
 
         for(User user : users) {
             if(user.getUsername().equalsIgnoreCase(username)) {
@@ -36,7 +36,8 @@ public class UserService {
 
         String hashedPass = PasswordUtil.hashPassword(password);
 
-        User user = new User(name, username, hashedPass, DateUtil.dateToString(currentDateTime));
+        User user = new User(name, username, hashedPass, currentDate.toString());
+//        User user = new User(name, username, hashedPass, "2025-12-22");
 
         userRepo.addUser(user);
         success = true;
@@ -52,6 +53,17 @@ public class UserService {
         if(user != null && user.getPasswordHash().equals(hashedPass))
         {
             return user;
+        }
+
+        return null;
+    }
+
+    public User userExists(String userId) {
+        List<User> users = userRepo.getUsers();
+
+        for(User user : users) {
+            if(user.getUserId().equals(userId))
+                return user;
         }
 
         return null;

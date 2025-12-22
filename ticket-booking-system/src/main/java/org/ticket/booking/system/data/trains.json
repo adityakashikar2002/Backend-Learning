@@ -5,7 +5,13 @@
     "trainName": "Rajdhani Express",
     "source": "New Delhi",
     "destination": "Kolkata",
-    "stations": ["New Delhi", "Kanpur Central", "Prayagraj", "Gaya", "Kolkata"],
+    "stations": [
+      "New Delhi",
+      "Kanpur Central",
+      "Prayagraj",
+      "Gaya",
+      "Kolkata"
+    ],
     "departureTime": "16:50",
     "arrivalTime": "10:50",
     "totalSeats": 300,
@@ -17,7 +23,14 @@
     "trainName": "Bhopal Shatabdi",
     "source": "New Delhi",
     "destination": "Bhopal",
-    "stations": ["New Delhi", "Mathura", "Agra", "Gwalior", "Jhansi", "Bhopal"],
+    "stations": [
+      "New Delhi",
+      "Mathura",
+      "Agra",
+      "Gwalior",
+      "Jhansi",
+      "Bhopal"
+    ],
     "departureTime": "06:00",
     "arrivalTime": "14:40",
     "totalSeats": 500,
@@ -29,7 +42,14 @@
     "trainName": "Mumbai Rajdhani",
     "source": "Mumbai",
     "destination": "New Delhi",
-    "stations": ["Mumbai Central", "Surat", "Vadodara", "Ratlam", "Kota", "New Delhi"],
+    "stations": [
+      "Mumbai Central",
+      "Surat",
+      "Vadodara",
+      "Ratlam",
+      "Kota",
+      "New Delhi"
+    ],
     "departureTime": "17:00",
     "arrivalTime": "08:35",
     "totalSeats": 400,

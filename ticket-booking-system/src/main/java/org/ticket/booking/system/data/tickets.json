@@ -25,5 +25,14 @@
     "journeyDate": "2026-01-05",
     "bookingDate": "2025-12-18",
     "status": "CANCELLED"
+  },
+  {
+    "ticketId": "f3e9f517-f57c-4da0-a3e4-945041975e9f",
+    "userId": "86d16e69-6ab3-496f-8b0e-5e4f83a12e13",
+    "trainId": "7e3b6e82-1234-4a55-8c77-9a0b1c2d3e4f",
+    "seatNumber": 256,
+    "journeyDate": "2025-12-22",
+    "bookingDate": "2025-12-22",
+    "status": "BOOKED"
   }
 ]

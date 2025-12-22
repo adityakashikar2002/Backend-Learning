@@ -12,5 +12,12 @@
     "username": "takla12",
     "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
     "createdAt": "2025-12-22"
+  },
+  {
+    "userId": "86d16e69-6ab3-496f-8b0e-5e4f83a12e13",
+    "name": "Aditya Dhage",
+    "username": "dhagu047",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "createdAt": "2025-12-22"
   }
 ]

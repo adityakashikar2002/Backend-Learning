@@ -2,12 +2,15 @@ package org.ticket.booking.system;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.ticket.booking.system.model.Admin;
 import org.ticket.booking.system.model.Ticket;
 import org.ticket.booking.system.model.Train;
 import org.ticket.booking.system.model.User;
+import org.ticket.booking.system.repository.AdminRepository;
 import org.ticket.booking.system.repository.TicketRepository;
 import org.ticket.booking.system.repository.TrainRepository;
 import org.ticket.booking.system.repository.UserRepository;
+import org.ticket.booking.system.service.AdminService;
 import org.ticket.booking.system.service.TicketService;
 import org.ticket.booking.system.service.TrainService;
 import org.ticket.booking.system.service.UserService;
@@ -32,19 +35,27 @@ public class Main {
         TrainService trainService = new TrainService(trainRepo);
         TicketService ticketService = new TicketService(ticketRepo,trainRepo,userService,trainService);
 
-        Scanner sc = new Scanner(System.in);
-        boolean loggedIn = false;
+        Admin admin = new Admin();
+        AdminRepository adminRepo = new AdminRepository();
+        AdminService adminService = new AdminService(adminRepo);
 
-        while(!loggedIn)
+        Scanner sc = new Scanner(System.in);
+        boolean userLoggedIn = false;
+        boolean adminLoggedIn = false;
+
+        while(!userLoggedIn && !adminLoggedIn)
         {
             System.out.println("WELCOME TO AKTRAINS !!");
             System.out.println("Please Enter Below For:- ");
-            System.out.println("1. Login");
-            System.out.println("2. SignUp");
+            System.out.println("1. User Login");
+            System.out.println("2. User SignUp");
+            System.out.println("3. Admin Login");
 
             String name;
             String userName;
             String passWord;
+
+            String codeName;
 
             System.out.println("Enter your Choice: ");
             int choice = sc.nextInt();
@@ -62,7 +73,7 @@ public class Main {
                     user = userService.login(userName, passWord);
 
                     if(user != null) {
-                        loggedIn = true;
+                        userLoggedIn = true;
                         System.out.println("Login Successful !! Welcome "+ user.getName());
                     }
                     else
@@ -86,19 +97,36 @@ public class Main {
                         System.out.println("SignUp Failed.");
                     break;
 
+                case 3:
+                    System.out.println("Welcome Admin Member, Please Enter Your Credentials: ");
+                    System.out.println("Codename: ");
+                    codeName = sc.nextLine();
+                    System.out.println("Password: ");
+                    passWord = sc.nextLine();
+
+                    admin = adminService.adminLogin(codeName, passWord);
+
+                    if(admin != null) {
+                        adminLoggedIn = true;
+                        System.out.println("Admin Login Successful !! Welcome Admin "+ admin.getAdminCodeName());
+                    }
+                    else
+                        System.out.println("Admin Login Failed. Wrong Codename / Password. Try Again");
+                    break;
+
                 default:
                     System.out.println("Invalid Choice !! 🤐");
                     break;
             }
         }
 
-        while(loggedIn)
+        while(userLoggedIn)
         {
             System.out.println("Please Enter Below For:- ");
             System.out.println("1. View All Trains");
             System.out.println("2. Search Trains by Source & Destination");
             System.out.println("3. Book Ticket");
-            System.out.println("4. View Booked Tickets");
+            System.out.println("4. My Tickets");
             System.out.println("5. Cancel Ticket");
             System.out.println("6. Logout");
 
@@ -156,15 +184,12 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.println("All Booked Tickets by: "+ user.getUsername() + " are: ");
-                    tickets = ticketService.fetchTicketsByUserId(user.getUserId());
-                    if(tickets.isEmpty())
-                        System.out.println("No Tickets Found.");
-                    else
-                        System.out.println(gson.toJson(tickets));
+                    displayUserTickets(user,ticketService,gson);
                     break;
 
                 case 5:
+                    displayUserTickets(user,ticketService,gson);
+
                     System.out.println("Enter Ticket ID");
                     ticketID = sc.nextLine();
                     boolean cancelled = ticketService.cancelTicket(user.getUserId(), ticketID);
@@ -175,7 +200,7 @@ public class Main {
                     break;
 
                 case 6:
-                    loggedIn = false;
+                    userLoggedIn = false;
                     System.out.println("Logged Out Successfully");
                     break;
 
@@ -184,5 +209,92 @@ public class Main {
                     break;
             }
         }
+
+        while(adminLoggedIn)
+        {
+            System.out.println("Please Enter Below For:- ");
+            System.out.println("1. View All Trains");
+            System.out.println("2. Search Trains by Source & Destination");
+            System.out.println("3. Add New Train");
+            System.out.println("4. Update Train Details");
+            System.out.println("5. Delete Train");
+            System.out.println("6. View All Tickets");
+            System.out.println("7. View All Users");
+            System.out.println("8. Logout");
+
+            String sourceStation;
+            String destinationStation;
+            List<Train> trains;
+
+            System.out.println("Enter your Choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice)
+            {
+                case 1:
+                    System.out.println("Below is List of All Trains: ");
+                    trains = trainRepo.getTrains();
+                    System.out.println(gson.toJson(trains));
+                    break;
+
+                case 2:
+                    System.out.println("To Search by Source & Destination Enter Details");
+                    System.out.println("Source Station: ");
+                    sourceStation = sc.nextLine();
+                    System.out.println("Destination Station: ");
+                    destinationStation = sc.nextLine();
+
+                    trains = trainService.searchBySourceAndDestination(sourceStation, destinationStation);
+                    if(trains.isEmpty())
+                        System.out.println("No Trains Found.");
+                    else
+                        System.out.println(gson.toJson(trains));
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+                    break;
+
+                case 5:
+                    break;
+
+                case 6:
+                    System.out.println("All Tickets: ");
+                    System.out.println(gson.toJson(ticketRepo.loadTickets()));
+                    break;
+
+                case 7:
+                    System.out.println("All Users: ");
+                    System.out.println(gson.toJson(userRepo.getUsers()));
+                    break;
+
+                case 8:
+                    adminLoggedIn = false;
+                    System.out.println("Logged Out Successfully");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice");
+                    break;
+            }
+        }
+    }
+
+    // Inside Main.java, below the main method
+    private static void displayUserTickets(User user, TicketService ticketService, Gson gson) {
+        System.out.println("--------------------------------------------");
+        System.out.println("Tickets for: " + user.getUsername());
+        List<Ticket> tickets = ticketService.fetchTicketsByUserId(user.getUserId());
+
+        if (tickets.isEmpty()) {
+            System.out.println("No Tickets Found.");
+        } else {
+            System.out.println(gson.toJson(tickets));
+        }
+        System.out.println("--------------------------------------------");
     }
 }

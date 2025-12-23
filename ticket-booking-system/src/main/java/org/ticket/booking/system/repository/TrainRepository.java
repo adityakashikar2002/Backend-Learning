@@ -28,5 +28,10 @@ public class TrainRepository {
         JsonUtil.writeJSON(trains, TRAIN_FILE_PATH);
     }
 
+    public void addTrain(Train train) {
+        List<Train> trains = getTrains();
+        trains.add(train);
+        saveTrains(trains);
+    }
 
 }

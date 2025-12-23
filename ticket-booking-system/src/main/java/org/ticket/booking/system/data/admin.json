@@ -1,0 +1,14 @@
+[
+  {
+    "adminId": "a5c64522-1009-4153-aad3-bfb1e6d6ea29",
+    "name": "Rakesh Mishra",
+    "codename": "gen9x12",
+    "passwordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"
+  },
+  {
+    "adminId": "227c6f29-97eb-4b13-b08e-b6d6e559c6ff",
+    "name": "Anand Raut",
+    "codename": "codextreme09",
+    "passwordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"
+  }
+]

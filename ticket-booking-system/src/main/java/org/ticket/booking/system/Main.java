@@ -99,7 +99,8 @@ public class Main {
             System.out.println("2. Search Trains by Source & Destination");
             System.out.println("3. Book Ticket");
             System.out.println("4. View Booked Tickets");
-            System.out.println("5. Logout");
+            System.out.println("5. Cancel Ticket");
+            System.out.println("6. Logout");
 
             String sourceStation;
             String destinationStation;
@@ -107,6 +108,7 @@ public class Main {
             List<Ticket> tickets;
             String trainNo;
             String travelDate;
+            String ticketID;
 
 
             System.out.println("Enter your Choice: ");
@@ -163,6 +165,16 @@ public class Main {
                     break;
 
                 case 5:
+                    System.out.println("Enter Ticket ID");
+                    ticketID = sc.nextLine();
+                    boolean cancelled = ticketService.cancelTicket(user.getUserId(), ticketID);
+                    if(cancelled)
+                        System.out.println("Ticket Cancelled Successfully.");
+                    else
+                        System.out.println("Ticket Cancellation Failed.");
+                    break;
+
+                case 6:
                     loggedIn = false;
                     System.out.println("Logged Out Successfully");
                     break;

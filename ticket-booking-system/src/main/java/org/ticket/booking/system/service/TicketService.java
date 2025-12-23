@@ -129,4 +129,55 @@ public class TicketService {
         return true;
     }
 
+//    public Ticket ticketExists(String ticketId) {
+//        List<Ticket> tickets = ticketRepo.loadTickets();
+//
+//        for(Ticket ticket : tickets) {
+//            if(ticket.getTicketId().equals(ticketId))
+//                return ticket;
+//        }
+//
+//        return null;
+//    }
+
+    public boolean cancelTicket(String userId, String ticketId) {
+        // 1. Load Data
+        List<Ticket> tickets = ticketRepo.loadTickets();
+        List<Train> trains = trainRepo.getTrains();
+
+        Ticket targetTicket = null;
+
+        // 2. Find the Ticket in the current list
+        for (Ticket t : tickets) {
+            if (t.getTicketId().equals(ticketId) && t.getUserId().equals(userId)) {
+                targetTicket = t;
+                break;
+            }
+        }
+
+        // 3. Validations
+        if (targetTicket == null || targetTicket.getStatus().equals("CANCELLED") || targetTicket.getTrainId() == null) {
+            return false;
+        }
+
+        // 4. Update the Train Seats
+        for (Train train : trains) {
+            // NOTE: Make sure your Ticket model stores trainNumber!
+            if (train.getTrainNumber().equals(targetTicket.getTrainNumber())) {
+                if (train.getAvailableSeats() < train.getTotalSeats()) {
+                    train.setAvailableSeats(train.getAvailableSeats() + 1); // FIXED: Added +1
+                }
+                break;
+            }
+        }
+
+        // 5. Update Ticket Status
+        targetTicket.setStatus("CANCELLED"); // Ensure this matches your "BOOKED" logic
+
+        // 6. Save Everything
+        trainRepo.saveTrains(trains);
+        ticketRepo.saveTickets(tickets);
+
+        return true;
+    }
 }

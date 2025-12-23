@@ -78,7 +78,7 @@ public class Ticket {
 
     public void setStatus(String status) { this.status = status; }
 
-    public void cancelTicket() {
+    public void updateCancelStatus() {
         this.status = "CANCELLED";
     }
 

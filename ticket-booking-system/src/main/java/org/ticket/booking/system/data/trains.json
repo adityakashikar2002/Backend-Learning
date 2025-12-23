@@ -15,7 +15,7 @@
     "departureTime": "16:50",
     "arrivalTime": "10:50",
     "totalSeats": 300,
-    "availableSeats": 44
+    "availableSeats": 45
   },
   {
     "trainId": "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
@@ -53,6 +53,6 @@
     "departureTime": "17:00",
     "arrivalTime": "08:35",
     "totalSeats": 400,
-    "availableSeats": 14
+    "availableSeats": 15
   }
 ]

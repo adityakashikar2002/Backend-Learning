@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TicketRepository {
-    private static final Dotenv dotenv = Dotenv.load();
+//    private static final Dotenv dotenv = Dotenv.load();
     private static final Type TICKET_LIST_TYPE = new TypeToken<List<Ticket>>() {}.getType();
     private static final String BASE_PATH = ConfigLoader.getFilePath();
     // private static final String BASE_PATH = "src/main/java/org/ticket/booking/system/data";

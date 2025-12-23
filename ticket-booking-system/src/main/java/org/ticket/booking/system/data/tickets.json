@@ -27,12 +27,25 @@
     "status": "CANCELLED"
   },
   {
-    "ticketId": "f3e9f517-f57c-4da0-a3e4-945041975e9f",
-    "userId": "86d16e69-6ab3-496f-8b0e-5e4f83a12e13",
+    "ticketId": "11a35496-93d2-41b9-b08d-baa3ebcdf670",
+    "userId": "9a4db87c-8ec6-4a1d-9f43-920bdf7cb419",
     "trainId": "7e3b6e82-1234-4a55-8c77-9a0b1c2d3e4f",
     "seatNumber": 256,
-    "journeyDate": "2025-12-22",
-    "bookingDate": "2025-12-22",
+    "journeyDate": "2025-12-23",
+    "bookingDate": "2025-12-23",
+    "status": "BOOKED"
+  },
+  {
+    "ticketId": "d9c3e7ce-134e-4436-94e8-88c4867ece22",
+    "userId": "0b8b4544-1a87-471d-b5b4-13dc71fefa27",
+    "trainId": "f9e8d7c6-b5a4-3210-9876-54321fedcba0",
+    "trainNumber": "12951",
+    "trainName": "Mumbai Rajdhani",
+    "startStation": "Surat",
+    "endStation": "Kota",
+    "seatNumber": 386,
+    "journeyDate": "2025-12-26",
+    "bookingDate": "2025-12-23",
     "status": "BOOKED"
   }
 ]

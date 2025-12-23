@@ -57,12 +57,12 @@ public class User {
         return createdAt;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId='" + userId + '\'' +
-                ", name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "userId='" + userId + '\'' +
+//                ", name='" + name + '\'' +
+//                ", username='" + username + '\'' +
+//                '}';
+//    }
 }

@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class TrainRepository {
-    private static final Dotenv dotenv = Dotenv.load();
+//    private static final Dotenv dotenv = Dotenv.load();
     private static final Type TRAIN_LIST_TYPE = new TypeToken<List<Train>>() {}.getType();
     private static final String BASE_PATH = ConfigLoader.getFilePath();
     // private static final String BASE_PATH = "src/main/java/org/ticket/booking/system/data";

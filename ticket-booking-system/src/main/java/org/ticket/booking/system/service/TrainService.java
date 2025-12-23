@@ -15,18 +15,32 @@ public class TrainService {
     }
 
     public List<Train> searchBySourceAndDestination(String source, String destination) {
+        // 1. Clean the USER INPUT immediately
+        String cleanSource = source.trim().toLowerCase();
+        String cleanDest = destination.trim().toLowerCase();
 
         List<Train> res = new ArrayList<>();
-        if(source.equalsIgnoreCase(destination))
-            return res;
+        List<Train> allTrains = trainRepo.getTrains();
 
-        List<Train> trains = trainRepo.getTrains();
+        for (Train train : allTrains) {
+            // 2. Clean the DATA from the JSON for comparison
+            List<String> stations = train.getStations();
 
-        for(Train train : trains) {
-            if(train.getSource().equalsIgnoreCase(source) && train.getDestination().equalsIgnoreCase(destination))
+            int srcIdx = -1;
+            int destIdx = -1;
+
+            for (int i = 0; i < stations.size(); i++) {
+                // Clean each station name before checking
+                String currentStation = stations.get(i).trim().toLowerCase();
+
+                if (currentStation.equals(cleanSource)) srcIdx = i;
+                if (currentStation.equals(cleanDest)) destIdx = i;
+            }
+
+            if (srcIdx != -1 && destIdx != -1 && srcIdx < destIdx) {
                 res.add(train);
+            }
         }
-
         return res;
     }
 

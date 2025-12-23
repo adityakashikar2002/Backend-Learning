@@ -10,8 +10,11 @@ public class DateUtil {
         return date.format(DateTimeFormatter.ISO_DATE_TIME);
     }
 
-    public static boolean validDate(String date) {
-        LocalDate d = LocalDate.parse(date);
+    public static boolean validDate(String date)
+    {
+        String cleanDate = date.trim();
+
+        LocalDate d = LocalDate.parse(cleanDate);
 
         if(d.equals(LocalDate.now()) || d.isAfter(LocalDate.now()))
             return true;

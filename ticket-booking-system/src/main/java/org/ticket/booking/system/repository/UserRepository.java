@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class UserRepository {
-    private static final Dotenv dotenv = Dotenv.load();
+//    private static final Dotenv dotenv = Dotenv.load();
 
     private static final Type USER_LIST_TYPE = new TypeToken<List<User>>() {}.getType();
     private static final String BASE_PATH = ConfigLoader.getFilePath();

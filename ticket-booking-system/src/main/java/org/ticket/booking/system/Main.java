@@ -63,8 +63,7 @@ public class Main {
 
                     if(user != null) {
                         loggedIn = true;
-                        System.out.println("Login Successful !! Welcome "+
-                                userRepo.getUserByUserName(userName).getName());
+                        System.out.println("Login Successful !! Welcome "+ user.getName());
                     }
                     else
                         System.out.println("Login Failed. Wrong Username / Password. Try Again");
@@ -107,6 +106,7 @@ public class Main {
             List<Train> trains;
             List<Ticket> tickets;
             String trainNo;
+            String travelDate;
 
 
             System.out.println("Enter your Choice: ");
@@ -138,7 +138,14 @@ public class Main {
                 case 3:
                     System.out.println("Enter TrainNo. to Book Ticket: ");
                     trainNo = sc.nextLine();
-                    boolean booked = ticketService.bookTicket(user.getUserId(),trainNo, LocalDate.now().toString());
+                    System.out.println("Travel from: ");
+                    sourceStation = sc.nextLine();
+                    System.out.println("Travel to: ");
+                    destinationStation = sc.nextLine();
+                    System.out.println("Book Ticket for Date (Use YYYY-MM_DD)");
+                    travelDate = sc.nextLine();
+
+                    boolean booked = ticketService.bookTicket(user.getUserId(),trainNo, sourceStation, destinationStation, travelDate);
 
                     if(booked)
                         System.out.println("Ticket Booked SuccessFully.");

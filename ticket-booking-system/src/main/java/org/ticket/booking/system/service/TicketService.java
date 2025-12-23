@@ -66,13 +66,33 @@ public class TicketService {
 
     }
 
-    public boolean bookTicket(String userId, String trainNumber, String journeyDate) {
+    public boolean bookTicket(String userId, String trainNumber, String source, String destination, String journeyDate) {
         // Step 1: Validation
         User user = userService.userExists(userId);
         Train train = trainService.getTrainByNumber(trainNumber);
         boolean date = DateUtil.validDate(journeyDate);
 
         if(user == null || train == null || date == false)
+            return false;
+
+        List<String> stations = train.getStations();
+
+        if(stations.isEmpty())
+            return false;
+
+        int srcIdx = -1;
+        int destIdx = -1;
+        for (int i = 0; i < stations.size(); i++) {
+            // Clean each station name before checking
+            String currentStation = stations.get(i).trim().toLowerCase();
+
+            if (currentStation.equals(source.trim().toLowerCase()))
+                srcIdx = i;
+            if (currentStation.equals(destination.trim().toLowerCase()))
+                destIdx = i;
+        }
+
+        if(srcIdx == -1 || destIdx == -1 || srcIdx >= destIdx)
             return false;
 
         // Step 2: Seats Checking
@@ -86,15 +106,25 @@ public class TicketService {
         int seatBooked =  train.getTotalSeats() - unbookedSeats + 1;
 
         // Step 4 : Ticket Creation
-        Ticket ticket = new Ticket(userId, train.getTrainId(), seatBooked, journeyDate,
+        Ticket ticket = new Ticket(userId, train.getTrainId(), train.getTrainNumber(),
+                train.getTrainName(), source, destination,
+                seatBooked, journeyDate,
                 LocalDate.now().toString());
 
 
         // Step 5 : Update AvailableSeats
-        train.setAvailableSeats(unbookedSeats - 1);
+        List<Train> allTrains = trainRepo.getTrains();
+        for(Train t : allTrains)
+        {
+            if(t.getTrainNumber().equals(trainNumber))
+            {
+                t.setAvailableSeats(unbookedSeats - 1);
+                break;
+            }
+        }
 
         //Step 6 : Saving and Updating to Db / Json
-        trainRepo.saveTrains(trainRepo.getTrains());
+        trainRepo.saveTrains(allTrains);
         ticketRepo.addTicket(ticket);
         return true;
     }

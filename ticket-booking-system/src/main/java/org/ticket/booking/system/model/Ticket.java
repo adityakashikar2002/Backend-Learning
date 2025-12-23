@@ -7,6 +7,10 @@ public class Ticket {
     private String ticketId;
     private String userId;
     private String trainId;
+    private String trainNumber;
+    private String trainName;
+    private String startStation;
+    private String endStation;
     private int seatNumber;
     private String journeyDate;
     private String bookingDate;
@@ -15,12 +19,17 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(String userId, String trainId, int seatNumber,
+    public Ticket(String userId, String trainId, String trainNumber, String trainName,
+                  String startStation, String endStation, int seatNumber,
                   String journeyDate, String bookingDate) {
 
         this.ticketId = UUID.randomUUID().toString();
         this.userId = userId;
         this.trainId = trainId;
+        this.trainNumber = trainNumber;
+        this.trainName = trainName;
+        this.startStation = startStation;
+        this.endStation = endStation;
         this.seatNumber = seatNumber;
         this.journeyDate = journeyDate;
         this.bookingDate = bookingDate;
@@ -37,6 +46,18 @@ public class Ticket {
 
     public String getTrainId() {
         return trainId;
+    }
+
+    public String getTrainNumber() {return  trainNumber;}
+
+    public String getTrainName() {return  trainName;}
+
+    public String getStartStation() {
+        return startStation;
+    }
+
+    public String getEndStation() {
+        return endStation;
     }
 
     public int getSeatNumber() {
@@ -63,14 +84,14 @@ public class Ticket {
 
 
 
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "ticketId='" + ticketId + '\'' +
-                ", trainId='" + trainId + '\'' +
-                ", seatNumber=" + seatNumber +
-                ", journeyDate='" + journeyDate + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Ticket{" +
+//                "ticketId='" + ticketId + '\'' +
+//                ", trainId='" + trainId + '\'' +
+//                ", seatNumber=" + seatNumber +
+//                ", journeyDate='" + journeyDate + '\'' +
+//                ", status='" + status + '\'' +
+//                '}';
+//    }
 }

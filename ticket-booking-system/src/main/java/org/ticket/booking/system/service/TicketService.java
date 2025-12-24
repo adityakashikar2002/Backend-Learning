@@ -110,17 +110,6 @@ public class TicketService {
         return true;
     }
 
-//    public Ticket ticketExists(String ticketId) {
-//        List<Ticket> tickets = ticketRepo.loadTickets();
-//
-//        for(Ticket ticket : tickets) {
-//            if(ticket.getTicketId().equals(ticketId))
-//                return ticket;
-//        }
-//
-//        return null;
-//    }
-
     public boolean cancelTicket(String userId, String ticketId) {
         // 1. Load Data
         List<Ticket> tickets = ticketRepo.loadTickets();
@@ -137,7 +126,7 @@ public class TicketService {
         }
 
         // 3. Validations
-        if (targetTicket == null || targetTicket.getStatus().equals("CANCELLED") || targetTicket.getTrainId() == null) {
+        if (targetTicket == null || targetTicket.getStatus().equals(Ticket.TicketStatus.CANCELLED) || targetTicket.getTrainId() == null) {
             return false;
         }
 
@@ -153,7 +142,7 @@ public class TicketService {
         }
 
         // 5. Update Ticket Status
-        targetTicket.setStatus("CANCELLED"); // Ensure this matches your "BOOKED" logic
+        targetTicket.setStatus(Ticket.TicketStatus.CANCELLED); // Ensure this matches your "BOOKED" logic
 
         // 6. Save Everything
         trainRepo.saveTrains(trains);

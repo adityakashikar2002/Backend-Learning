@@ -5,7 +5,6 @@ import org.ticket.booking.system.repository.UserRepository;
 import org.ticket.booking.system.util.PasswordUtil;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class UserService {
@@ -35,7 +34,6 @@ public class UserService {
         String hashedPass = PasswordUtil.hashPassword(password);
 
         User user = new User(name, username, hashedPass, currentDate.toString());
-//        User user = new User(name, username, hashedPass, "2025-12-22");
 
         userRepo.addUser(user);
         success = true;

@@ -4,6 +4,12 @@ import java.util.UUID;
 
 public class Ticket {
 
+    public enum TicketStatus {
+        BOOKED,
+        CANCELLED,
+        PENDING
+    }
+
     private String ticketId;
     private String userId;
     private String trainId;
@@ -16,7 +22,7 @@ public class Ticket {
     private String arrivalTime;
     private int seatNumber;
     private String bookingDate;
-    private String status;
+    private TicketStatus status;
 
     public Ticket() {
     }
@@ -37,7 +43,7 @@ public class Ticket {
         this.seatNumber = seatNumber;
         this.journeyDate = journeyDate;
         this.bookingDate = bookingDate;
-        this.status = "BOOKED";
+        this.status = TicketStatus.BOOKED;
     }
 
     public String getTicketId() {
@@ -84,14 +90,14 @@ public class Ticket {
         return bookingDate;
     }
 
-    public String getStatus() {
+    public TicketStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) { this.status = status; }
+    public void setStatus(TicketStatus status) { this.status = status; }
 
     public void updateCancelStatus() {
-        this.status = "CANCELLED";
+        this.status = TicketStatus.CANCELLED;
     }
 
 }

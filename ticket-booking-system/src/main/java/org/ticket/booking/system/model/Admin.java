@@ -39,7 +39,7 @@ public class Admin {
         return codename;
     }
 
-    public void setAdminCodeName(String username) {
+    public void setAdminCodeName(String codeName) {
         this.codename = codename;
     }
 

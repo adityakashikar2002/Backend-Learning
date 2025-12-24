@@ -85,5 +85,294 @@
     ],
     "totalSeats": 250,
     "availableSeats": 225
+  },
+  {
+    "trainId": "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+    "trainNumber": "12260",
+    "trainName": "Sealdah Duronto",
+    "stations": [
+      {
+        "stationName": "New Delhi",
+        "arrivalTime": "19:35",
+        "departureTime": "19:45"
+      },
+      {
+        "stationName": "Kanpur Central",
+        "arrivalTime": "00:50",
+        "departureTime": "00:55"
+      },
+      {
+        "stationName": "Dhanbad Junction",
+        "arrivalTime": "07:50",
+        "departureTime": "07:55"
+      },
+      {
+        "stationName": "Sealdah",
+        "arrivalTime": "12:45",
+        "departureTime": "13:00"
+      }
+    ],
+    "totalSeats": 400,
+    "availableSeats": 310
+  },
+  {
+    "trainId": "b2c3d4e5-f6g7-8h9i-0j1k-l2m3n4o5p6q7",
+    "trainNumber": "12121",
+    "trainName": "Madhya Pradesh Sampark Kranti",
+    "stations": [
+      {
+        "stationName": "Jabalpur",
+        "arrivalTime": "19:10",
+        "departureTime": "19:30"
+      },
+      {
+        "stationName": "Katni",
+        "arrivalTime": "20:45",
+        "departureTime": "20:50"
+      },
+      {
+        "stationName": "Jhansi Junction",
+        "arrivalTime": "01:50",
+        "departureTime": "02:00"
+      },
+      {
+        "stationName": "Hazrat Nizamuddin",
+        "arrivalTime": "07:40",
+        "departureTime": "08:00"
+      }
+    ],
+    "totalSeats": 600,
+    "availableSeats": 580
+  },
+  {
+    "trainId": "c3d4e5f6-g7h8-9i0j-k1l2-m3n4o5p6q7r8",
+    "trainNumber": "12626",
+    "trainName": "Kerala Express",
+    "stations": [
+      {
+        "stationName": "New Delhi",
+        "arrivalTime": "20:00",
+        "departureTime": "20:10"
+      },
+      {
+        "stationName": "Nagpur",
+        "arrivalTime": "10:20",
+        "departureTime": "10:25"
+      },
+      {
+        "stationName": "Vijayawada Junction",
+        "arrivalTime": "22:10",
+        "departureTime": "22:20"
+      },
+      {
+        "stationName": "Trivandrum Central",
+        "arrivalTime": "14:30",
+        "departureTime": "15:00"
+      }
+    ],
+    "totalSeats": 800,
+    "availableSeats": 120
+  },
+  {
+    "trainId": "d4e5f6g7-h8i9-0j1k-l2m3-n4o5p6q7r8s9",
+    "trainNumber": "12904",
+    "trainName": "Golden Temple Mail",
+    "stations": [
+      {
+        "stationName": "Amritsar Junction",
+        "arrivalTime": "18:40",
+        "departureTime": "18:55"
+      },
+      {
+        "stationName": "Ludhiana Junction",
+        "arrivalTime": "21:10",
+        "departureTime": "21:20"
+      },
+      {
+        "stationName": "Kota Junction",
+        "arrivalTime": "10:30",
+        "departureTime": "10:40"
+      },
+      {
+        "stationName": "Mumbai Central",
+        "arrivalTime": "23:35",
+        "departureTime": "00:00"
+      }
+    ],
+    "totalSeats": 700,
+    "availableSeats": 450
+  },
+  {
+    "trainId": "e5f6g7h8-i9j0-k1l2-m3n4-o5p6q7r8s9t0",
+    "trainNumber": "22436",
+    "trainName": "Vande Bharat Express",
+    "stations": [
+      {
+        "stationName": "New Delhi",
+        "arrivalTime": "05:50",
+        "departureTime": "06:00"
+      },
+      {
+        "stationName": "Kanpur Central",
+        "arrivalTime": "10:08",
+        "departureTime": "10:10"
+      },
+      {
+        "stationName": "Prayagraj",
+        "arrivalTime": "12:08",
+        "departureTime": "12:10"
+      },
+      {
+        "stationName": "Varanasi Junction",
+        "arrivalTime": "14:00",
+        "departureTime": "14:30"
+      }
+    ],
+    "totalSeats": 1100,
+    "availableSeats": 850
+  },
+  {
+    "trainId": "f6g7h8i9-j0k1-l2m3-n4o5-p6q7r8s9t0u1",
+    "trainNumber": "12860",
+    "trainName": "Gitanjali Express",
+    "stations": [
+      {
+        "stationName": "Howrah Junction",
+        "arrivalTime": "13:40",
+        "departureTime": "14:00"
+      },
+      {
+        "stationName": "Tatanagar Junction",
+        "arrivalTime": "17:35",
+        "departureTime": "17:40"
+      },
+      {
+        "stationName": "Raipur Junction",
+        "arrivalTime": "01:20",
+        "departureTime": "01:25"
+      },
+      {
+        "stationName": "Mumbai CSMT",
+        "arrivalTime": "21:20",
+        "departureTime": "22:00" }
+    ],
+    "totalSeats": 650,
+    "availableSeats": 300
+  },
+  {
+    "trainId": "g7h8i9j0-k1l2-m3n4-o5p6-q7r8s9t0u1v2",
+    "trainNumber": "12431",
+    "trainName": "Rajdhani Express (TVC)",
+    "stations": [
+      {
+        "stationName": "Trivandrum Central",
+        "arrivalTime": "19:00",
+        "departureTime": "19:15"
+      },
+      {
+        "stationName": "Madgaon Junction",
+        "arrivalTime": "10:00",
+        "departureTime": "10:10"
+      },
+      {
+        "stationName": "Panvel",
+        "arrivalTime": "18:00",
+        "departureTime": "18:05"
+      },
+      {
+        "stationName": "Hazrat Nizamuddin",
+        "arrivalTime": "12:35",
+        "departureTime": "13:00"
+      }
+    ],
+    "totalSeats": 450,
+    "availableSeats": 210
+  },
+  {
+    "trainId": "h8i9j0k1-l2m3-n4o5-p6q7-r8s9t0u1v2w3",
+    "trainNumber": "12007",
+    "trainName": "Shatabdi Express (Mysuru)",
+    "stations": [
+      {
+        "stationName": "Chennai Central",
+        "arrivalTime": "05:45",
+        "departureTime": "06:00"
+      },
+      {
+        "stationName": "Katpadi Junction",
+        "arrivalTime": "07:33",
+        "departureTime": "07:35"
+      },
+      {
+        "stationName": "KSR Bengaluru",
+        "arrivalTime": "10:45",
+        "departureTime": "10:50"
+      },
+      {
+        "stationName": "Mysuru Junction",
+        "arrivalTime": "13:00",
+        "departureTime": "13:30"
+      }
+    ],
+    "totalSeats": 350,
+    "availableSeats": 190
+  },
+  {
+    "trainId": "i9j0k1l2-m3n4-o5p6-q7r8-s9t0u1v2w3x4",
+    "trainNumber": "12723",
+    "trainName": "Telangana Express",
+    "stations": [
+      {
+        "stationName": "Hyderabad Deccan",
+        "arrivalTime": "06:10",
+        "departureTime": "06:25"
+      },
+      {
+        "stationName": "Ballarshah",
+        "arrivalTime": "12:55",
+        "departureTime": "13:00"
+      },
+      {
+        "stationName": "Bhopal Junction",
+        "arrivalTime": "21:00",
+        "departureTime": "21:10"
+      },
+      {
+        "stationName": "New Delhi",
+        "arrivalTime": "09:05",
+        "departureTime": "09:30"
+      }
+    ],
+    "totalSeats": 550,
+    "availableSeats": 420
+  },
+  {
+    "trainId": "j0k1l2m3-n4o5-p6q7-r8s9-t0u1v2w3x4y5",
+    "trainNumber": "12245",
+    "trainName": "Howrah Duronto",
+    "stations": [
+      {
+        "stationName": "KSR Bengaluru",
+        "arrivalTime": "10:50",
+        "departureTime": "11:00"
+      },
+      {
+        "stationName": "Vijayawada Junction",
+        "arrivalTime": "20:15",
+        "departureTime": "20:30"
+      },
+      {
+        "stationName": "Bhubaneswar",
+        "arrivalTime": "04:30",
+        "departureTime": "04:40"
+      },
+      {
+        "stationName": "Howrah Junction",
+        "arrivalTime": "11:00",
+        "departureTime": "11:30"
+      }
+    ],
+    "totalSeats": 480,
+    "availableSeats": 350
   }
 ]

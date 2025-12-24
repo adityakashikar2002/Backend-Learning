@@ -12,7 +12,6 @@ public class AdminRepository {
 
     private static final Type ADMIN_LIST_TYPE = new TypeToken<List<Admin>>() {}.getType();
     private static final String BASE_PATH = ConfigLoader.getFilePath();
-    // private static final String BASE_PATH = "src/main/java/org/ticket/booking/system/data";
     private static final  String ADMIN_FILE_PATH = BASE_PATH + "/admin.json";
 
     public List<Admin> getAdmins() {

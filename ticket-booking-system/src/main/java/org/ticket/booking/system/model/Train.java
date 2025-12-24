@@ -84,16 +84,4 @@ public class Train {
         this.totalSeats = totalSeats;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Train{" +
-//                "trainNumber='" + trainNumber + '\'' +
-//                ", trainName='" + trainName + '\'' +
-//                ", source='" + source + '\'' +
-//                ", destination='" + destination + '\'' +
-//                ", departureTime='" + departureTime + '\'' +
-//                ", arrivalTime='" + arrivalTime + '\'' +
-//                ", availableSeats=" + availableSeats +
-//                '}';
-//    }
 }

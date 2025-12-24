@@ -15,7 +15,6 @@ import org.ticket.booking.system.service.TicketService;
 import org.ticket.booking.system.service.TrainService;
 import org.ticket.booking.system.service.UserService;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,7 +34,7 @@ public class Main {
         TrainService trainService = new TrainService(trainRepo);
         TicketService ticketService = new TicketService(ticketRepo,trainRepo,userService,trainService);
 
-        Admin admin = new Admin();
+        Admin admin;
         AdminRepository adminRepo = new AdminRepository();
         AdminService adminService = new AdminService(adminRepo);
 
@@ -64,7 +63,8 @@ public class Main {
             switch (choice)
             {
                 case 1:
-                    System.out.println("Please Enter your Details: ");
+                    System.out.println("Welcome, Please Enter your Details: ");
+
                     System.out.println("Username: ");
                     userName = sc.nextLine();
                     System.out.println("Password: ");
@@ -132,8 +132,6 @@ public class Main {
 
             String sourceStation;
             String destinationStation;
-            List<Train> trains;
-            List<Ticket> tickets;
             String trainNo;
             String travelDate;
             String ticketID;
@@ -146,23 +144,11 @@ public class Main {
             switch (choice)
             {
                 case 1:
-                    System.out.println("Below is List of All Trains: ");
-                    trains = trainRepo.getTrains();
-                    System.out.println(gson.toJson(trains));
+                    displayAllTrains(trainRepo, gson);
                     break;
 
                 case 2:
-                    System.out.println("To Search by Source & Destination Enter Details");
-                    System.out.println("Source Station: ");
-                    sourceStation = sc.nextLine();
-                    System.out.println("Destination Station: ");
-                    destinationStation = sc.nextLine();
-
-                    trains = trainService.searchBySourceAndDestination(sourceStation, destinationStation);
-                    if(trains.isEmpty())
-                        System.out.println("No Trains Found.");
-                    else
-                        System.out.println(gson.toJson(trains));
+                    displayTrainsBySourceDestination(trainService,gson,sc);
                     break;
 
                 case 3:
@@ -219,10 +205,6 @@ public class Main {
             System.out.println("4. View All Users");
             System.out.println("5. Logout");
 
-            String sourceStation;
-            String destinationStation;
-            List<Train> trains;
-
             System.out.println("Enter your Choice: ");
             int choice = sc.nextInt();
             sc.nextLine();
@@ -230,23 +212,11 @@ public class Main {
             switch (choice)
             {
                 case 1:
-                    System.out.println("Below is List of All Trains: ");
-                    trains = trainRepo.getTrains();
-                    System.out.println(gson.toJson(trains));
+                    displayAllTrains(trainRepo, gson);
                     break;
 
                 case 2:
-                    System.out.println("To Search by Source & Destination Enter Details");
-                    System.out.println("Source Station: ");
-                    sourceStation = sc.nextLine();
-                    System.out.println("Destination Station: ");
-                    destinationStation = sc.nextLine();
-
-                    trains = trainService.searchBySourceAndDestination(sourceStation, destinationStation);
-                    if(trains.isEmpty())
-                        System.out.println("No Trains Found.");
-                    else
-                        System.out.println(gson.toJson(trains));
+                    displayTrainsBySourceDestination(trainService,gson,sc);
                     break;
 
                 case 3:
@@ -271,9 +241,7 @@ public class Main {
         }
     }
 
-    // Inside Main.java, below the main method
     private static void displayUserTickets(User user, TicketService ticketService, Gson gson) {
-        System.out.println("--------------------------------------------");
         System.out.println("Tickets for: " + user.getUsername());
         List<Ticket> tickets = ticketService.fetchTicketsByUserId(user.getUserId());
 
@@ -282,6 +250,25 @@ public class Main {
         } else {
             System.out.println(gson.toJson(tickets));
         }
-        System.out.println("--------------------------------------------");
+    }
+
+    private static void displayAllTrains(TrainRepository trainRepo, Gson gson) {
+        System.out.println("Below is List of All Trains: ");
+        List<Train> trains = trainRepo.getTrains();
+        System.out.println(gson.toJson(trains));
+    }
+
+    private static void displayTrainsBySourceDestination(TrainService trainService, Gson gson, Scanner sc) {
+        System.out.println("To Search by Source & Destination Enter Details");
+        System.out.println("Source Station: ");
+        String sourceStation = sc.nextLine();
+        System.out.println("Destination Station: ");
+        String destinationStation = sc.nextLine();
+
+        List<Train> trains = trainService.searchBySourceAndDestination(sourceStation, destinationStation);
+        if(trains.isEmpty())
+            System.out.println("No Trains Found.");
+        else
+            System.out.println(gson.toJson(trains));
     }
 }

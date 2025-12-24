@@ -1,6 +1,5 @@
 package org.ticket.booking.system.repository;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import org.ticket.booking.system.model.Admin;
 import com.google.gson.reflect.TypeToken;
 import org.ticket.booking.system.util.ConfigLoader;
@@ -10,7 +9,6 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class AdminRepository {
-//    private static final Dotenv dotenv = Dotenv.load();
 
     private static final Type ADMIN_LIST_TYPE = new TypeToken<List<Admin>>() {}.getType();
     private static final String BASE_PATH = ConfigLoader.getFilePath();

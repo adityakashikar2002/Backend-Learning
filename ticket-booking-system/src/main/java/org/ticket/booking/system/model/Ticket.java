@@ -94,16 +94,4 @@ public class Ticket {
         this.status = "CANCELLED";
     }
 
-
-
-//    @Override
-//    public String toString() {
-//        return "Ticket{" +
-//                "ticketId='" + ticketId + '\'' +
-//                ", trainId='" + trainId + '\'' +
-//                ", seatNumber=" + seatNumber +
-//                ", journeyDate='" + journeyDate + '\'' +
-//                ", status='" + status + '\'' +
-//                '}';
-//    }
 }

@@ -2,8 +2,6 @@ package org.ticket.booking.system.service;
 
 import org.ticket.booking.system.model.User;
 import org.ticket.booking.system.repository.UserRepository;
-import org.ticket.booking.system.util.DateUtil;
-import org.ticket.booking.system.util.JsonUtil;
 import org.ticket.booking.system.util.PasswordUtil;
 
 import java.time.LocalDate;

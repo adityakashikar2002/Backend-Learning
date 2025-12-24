@@ -2,9 +2,6 @@ package org.ticket.booking.system.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import org.ticket.booking.system.model.User;
 
 import java.io.*;
 import java.lang.reflect.Type;

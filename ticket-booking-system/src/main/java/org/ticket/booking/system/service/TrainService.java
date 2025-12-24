@@ -1,5 +1,6 @@
 package org.ticket.booking.system.service;
 
+import org.ticket.booking.system.model.Station;
 import org.ticket.booking.system.model.Train;
 import org.ticket.booking.system.repository.TrainRepository;
 
@@ -24,14 +25,14 @@ public class TrainService {
 
         for (Train train : allTrains) {
             // 2. Clean the DATA from the JSON for comparison
-            List<String> stations = train.getStations();
+            List<Station> stations = train.getStations();
 
             int srcIdx = -1;
             int destIdx = -1;
 
             for (int i = 0; i < stations.size(); i++) {
                 // Clean each station name before checking
-                String currentStation = stations.get(i).trim().toLowerCase();
+                String currentStation = stations.get(i).getStationName().trim().toLowerCase();
 
                 if (currentStation.equals(cleanSource)) srcIdx = i;
                 if (currentStation.equals(cleanDest)) destIdx = i;

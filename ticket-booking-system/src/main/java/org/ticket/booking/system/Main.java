@@ -215,12 +215,9 @@ public class Main {
             System.out.println("Please Enter Below For:- ");
             System.out.println("1. View All Trains");
             System.out.println("2. Search Trains by Source & Destination");
-            System.out.println("3. Add New Train");
-            System.out.println("4. Update Train Details");
-            System.out.println("5. Delete Train");
-            System.out.println("6. View All Tickets");
-            System.out.println("7. View All Users");
-            System.out.println("8. Logout");
+            System.out.println("3. View All Tickets");
+            System.out.println("4. View All Users");
+            System.out.println("5. Logout");
 
             String sourceStation;
             String destinationStation;
@@ -253,26 +250,16 @@ public class Main {
                     break;
 
                 case 3:
-
-                    break;
-
-                case 4:
-                    break;
-
-                case 5:
-                    break;
-
-                case 6:
                     System.out.println("All Tickets: ");
                     System.out.println(gson.toJson(ticketRepo.loadTickets()));
                     break;
 
-                case 7:
+                case 4:
                     System.out.println("All Users: ");
                     System.out.println(gson.toJson(userRepo.getUsers()));
                     break;
 
-                case 8:
+                case 5:
                     adminLoggedIn = false;
                     System.out.println("Logged Out Successfully");
                     break;

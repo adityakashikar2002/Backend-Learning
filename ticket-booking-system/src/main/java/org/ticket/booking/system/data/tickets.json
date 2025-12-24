@@ -5,11 +5,26 @@
     "trainId": "f9e8d7c6-b5a4-3210-9876-54321fedcba0",
     "trainNumber": "12951",
     "trainName": "Mumbai Rajdhani",
+    "journeyDate": "2026-01-01",
     "startStation": "Ratlam",
     "endStation": "New Delhi",
     "seatNumber": 386,
-    "journeyDate": "2026-01-01",
     "bookingDate": "2025-12-23",
+    "status": "CANCELLED"
+  },
+  {
+    "ticketId": "034375b0-6afd-4587-a388-fe8b797867f4",
+    "userId": "0b8b4544-1a87-471d-b5b4-13dc71fefa27",
+    "trainId": "7d1a2b3c-4e5f-6g7h-8i9j-0k1l2m3n4o5p",
+    "trainNumber": "12951",
+    "trainName": "Mumbai Rajdhani",
+    "journeyDate": "2025-12-29",
+    "startStation": "surat",
+    "endStation": "ratlam",
+    "departTime": "19:48",
+    "arrivalTime": "23:21",
+    "seatNumber": 51,
+    "bookingDate": "2025-12-24",
     "status": "CANCELLED"
   }
 ]

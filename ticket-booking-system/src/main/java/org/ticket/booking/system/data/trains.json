@@ -1,58 +1,89 @@
 [
   {
-    "trainId": "7e3b6e82-1234-4a55-8c77-9a0b1c2d3e4f",
+    "trainId": "8f2b1c3a-5d6e-4f7g-8h9i-0j1k2l3m4n5o",
     "trainNumber": "12301",
     "trainName": "Rajdhani Express",
-    "source": "New Delhi",
-    "destination": "Kolkata",
     "stations": [
-      "New Delhi",
-      "Kanpur Central",
-      "Prayagraj",
-      "Gaya",
-      "Kolkata"
+      {
+        "stationName": "New Delhi",
+        "arrivalTime": "16:45",
+        "departureTime": "16:50"
+      },
+      {
+        "stationName": "Kanpur Central",
+        "arrivalTime": "21:30",
+        "departureTime": "21:35"
+      },
+      {
+        "stationName": "Prayagraj",
+        "arrivalTime": "23:50",
+        "departureTime": "23:55"
+      },
+      {
+        "stationName": "Kolkata",
+        "arrivalTime": "10:50",
+        "departureTime": "11:00"
+      }
     ],
-    "departureTime": "16:50",
-    "arrivalTime": "10:50",
     "totalSeats": 300,
-    "availableSeats": 45
+    "availableSeats": 200
   },
   {
-    "trainId": "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
-    "trainNumber": "12002",
-    "trainName": "Bhopal Shatabdi",
-    "source": "New Delhi",
-    "destination": "Bhopal",
-    "stations": [
-      "New Delhi",
-      "Mathura",
-      "Agra",
-      "Gwalior",
-      "Jhansi",
-      "Bhopal"
-    ],
-    "departureTime": "06:00",
-    "arrivalTime": "14:40",
-    "totalSeats": 500,
-    "availableSeats": 120
-  },
-  {
-    "trainId": "f9e8d7c6-b5a4-3210-9876-54321fedcba0",
+    "trainId": "7d1a2b3c-4e5f-6g7h-8i9j-0k1l2m3n4o5p",
     "trainNumber": "12951",
     "trainName": "Mumbai Rajdhani",
-    "source": "Mumbai",
-    "destination": "New Delhi",
     "stations": [
-      "Mumbai Central",
-      "Surat",
-      "Vadodara",
-      "Ratlam",
-      "Kota",
-      "New Delhi"
+      {
+        "stationName": "Mumbai Central",
+        "arrivalTime": "16:55",
+        "departureTime": "17:00"
+      },
+      {
+        "stationName": "Surat",
+        "arrivalTime": "19:43",
+        "departureTime": "19:48"
+      },
+      {
+        "stationName": "Ratlam",
+        "arrivalTime": "23:21",
+        "departureTime": "23:24"
+      },
+      {
+        "stationName": "New Delhi",
+        "arrivalTime": "08:32",
+        "departureTime": "09:00"
+      }
     ],
-    "departureTime": "17:00",
-    "arrivalTime": "08:35",
-    "totalSeats": 400,
-    "availableSeats": 15
+    "totalSeats": 500,
+    "availableSeats": 450
+  },
+  {
+    "trainId": "9e8d7c6b-5a4f-3e2d-1c0b-a9f8e7d6c5b4",
+    "trainNumber": "12002",
+    "trainName": "Bhopal Shatabdi",
+    "stations": [
+      {
+        "stationName": "New Delhi",
+        "arrivalTime": "05:40",
+        "departureTime": "06:00"
+      },
+      {
+        "stationName": "Agra Cantt",
+        "arrivalTime": "07:50",
+        "departureTime": "07:55"
+      },
+      {
+        "stationName": "Gwalior",
+        "arrivalTime": "09:23",
+        "departureTime": "09:25"
+      },
+      {
+        "stationName": "Bhopal Junction",
+        "arrivalTime": "11:50",
+        "departureTime": "1:00"
+      }
+    ],
+    "totalSeats": 250,
+    "availableSeats": 225
   }
 ]

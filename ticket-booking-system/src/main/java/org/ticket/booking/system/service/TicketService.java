@@ -1,5 +1,6 @@
 package org.ticket.booking.system.service;
 
+import org.ticket.booking.system.model.Station;
 import org.ticket.booking.system.model.Ticket;
 import org.ticket.booking.system.model.Train;
 import org.ticket.booking.system.model.User;
@@ -75,7 +76,9 @@ public class TicketService {
         if(user == null || train == null || date == false)
             return false;
 
-        List<String> stations = train.getStations();
+        List<Station> stations = train.getStations();
+        String departTime = "";
+        String arrivalTime = "";
 
         if(stations.isEmpty())
             return false;
@@ -83,13 +86,19 @@ public class TicketService {
         int srcIdx = -1;
         int destIdx = -1;
         for (int i = 0; i < stations.size(); i++) {
+            Station station = stations.get(i);
             // Clean each station name before checking
-            String currentStation = stations.get(i).trim().toLowerCase();
+            String currentStation = station.getStationName().trim().toLowerCase();
 
             if (currentStation.equals(source.trim().toLowerCase()))
+            {
+                departTime = station.getDepartureTime();
                 srcIdx = i;
-            if (currentStation.equals(destination.trim().toLowerCase()))
+            }
+            if (currentStation.equals(destination.trim().toLowerCase())) {
+                arrivalTime = station.getArrivalTime();
                 destIdx = i;
+            }
         }
 
         if(srcIdx == -1 || destIdx == -1 || srcIdx >= destIdx)
@@ -107,7 +116,8 @@ public class TicketService {
 
         // Step 4 : Ticket Creation
         Ticket ticket = new Ticket(userId, train.getTrainId(), train.getTrainNumber(),
-                train.getTrainName(), source, destination,
+                train.getTrainName(), stations.get(srcIdx).getStationName(), stations.get(destIdx).getStationName(),
+                departTime, arrivalTime,
                 seatBooked, journeyDate,
                 LocalDate.now().toString());
 

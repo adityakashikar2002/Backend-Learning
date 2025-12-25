@@ -57,7 +57,7 @@ util/         → Utility helpers (JSON, Date, Password)
 
 ---
 
-## 🎟️ Ticket Booking Flow (How it Works)
+## 🎟️ Ticket Booking Flow
 
 1. User selects a train
 2. System validates:
@@ -86,7 +86,7 @@ util/         → Utility helpers (JSON, Date, Password)
 
 ---
 
-## ⚠️ Exception Handling (Key Strength)
+## ⚠️ Exception Handling
 
 This project uses **custom runtime exceptions** instead of boolean flags:
 

@@ -40,7 +40,7 @@ public class Main {
 
         while(true)
         {
-            System.out.println("WELCOME TO AKTRAINS !!");
+            loadBanner();
             System.out.println("Please Enter Below For:- ");
             System.out.println("1. User Login");
             System.out.println("2. User SignUp");
@@ -120,4 +120,11 @@ public class Main {
 
     }
 
+    public static void loadBanner() {
+        System.out.println();
+        System.out.println("==============================================");
+        System.out.println("   R A I L F L O W  - Ticket Booking System");
+        System.out.println("==============================================");
+        System.out.println();
+    }
 }

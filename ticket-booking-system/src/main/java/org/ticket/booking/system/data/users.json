@@ -12,5 +12,12 @@
     "username": "satish21",
     "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
     "createdAt": "2025-12-23"
+  },
+  {
+    "userId": "a33f6356-21cd-4a60-a4bf-5b7b910e7d8c",
+    "name": "Kavita Rani",
+    "username": "kav09r",
+    "passwordHash": "e24df920078c3dd4e7e8d2442f00e5c9ab2a231bb3918d65cc50906e49ecaef4",
+    "createdAt": "2025-12-25"
   }
 ]

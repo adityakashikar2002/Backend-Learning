@@ -1,6 +1,7 @@
 package org.ticket.booking.system.controller;
 
 import com.google.gson.Gson;
+import org.ticket.booking.system.exception.TrainNotFoundException;
 import org.ticket.booking.system.model.Admin;
 import org.ticket.booking.system.model.Train;
 import org.ticket.booking.system.repository.TicketRepository;
@@ -80,9 +81,14 @@ public class AdminMenuHandler {
     }
 
     private void displayAllTrains(TrainRepository trainRepo, Gson gson) {
-        System.out.println("Below is List of All Trains: ");
-        List<Train> trains = trainRepo.getTrains();
-        System.out.println(gson.toJson(trains));
+        try {
+            System.out.println("Below is List of All Trains: ");
+            List<Train> trains = trainRepo.getTrains();
+            System.out.println(gson.toJson(trains));
+        }
+        catch (TrainNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void displayTrainsBySourceDestination(TrainService trainService, Gson gson, Scanner sc) {
@@ -92,10 +98,12 @@ public class AdminMenuHandler {
         System.out.println("Destination Station: ");
         String destinationStation = sc.nextLine();
 
-        List<Train> trains = trainService.searchBySourceAndDestination(sourceStation, destinationStation);
-        if(trains.isEmpty())
-            System.out.println("No Trains Found.");
-        else
+        try {
+            List<Train> trains = trainService.searchBySourceAndDestination(sourceStation, destinationStation);
             System.out.println(gson.toJson(trains));
+        } catch (TrainNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

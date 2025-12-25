@@ -1,5 +1,7 @@
 package org.ticket.booking.system.service;
 
+import org.ticket.booking.system.exception.TicketBookingException;
+import org.ticket.booking.system.exception.TrainNotFoundException;
 import org.ticket.booking.system.model.Station;
 import org.ticket.booking.system.model.Train;
 import org.ticket.booking.system.repository.TrainRepository;
@@ -9,7 +11,7 @@ import java.util.List;
 
 public class TrainService {
 
-    private TrainRepository trainRepo;
+    private final TrainRepository trainRepo;
 
     public TrainService(TrainRepository trainRepo) {
         this.trainRepo = trainRepo;
@@ -42,6 +44,10 @@ public class TrainService {
                 res.add(train);
             }
         }
+
+        if(res.isEmpty())
+            throw new TrainNotFoundException("No Train Found.");
+
         return res;
     }
 
@@ -53,6 +59,6 @@ public class TrainService {
                 return train;
         }
 
-        return null;
+        throw new TrainNotFoundException("No Train Found.");
     }
 }

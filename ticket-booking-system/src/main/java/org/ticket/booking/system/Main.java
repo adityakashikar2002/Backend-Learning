@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.ticket.booking.system.controller.AdminMenuHandler;
 import org.ticket.booking.system.controller.UserMenuHandler;
+import org.ticket.booking.system.exception.*;
 import org.ticket.booking.system.model.Admin;
 import org.ticket.booking.system.model.User;
 import org.ticket.booking.system.repository.AdminRepository;
@@ -65,14 +66,14 @@ public class Main {
                     System.out.println("Password: ");
                     passWord = sc.nextLine();
 
-                    User user = userService.login(userName, passWord);
-
-                    if(user != null) {
+                    try {
+                        User user = userService.login(userName, passWord);
                         System.out.println("Login Successful !! Welcome "+ user.getName());
                         new UserMenuHandler(user, ticketService, trainService, trainRepo, sc, gson).userMenu();
                     }
-                    else
-                        System.out.println("Login Failed. Wrong Username / Password. Try Again");
+                    catch (TicketBookingException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
 
                 case 2:
@@ -84,12 +85,13 @@ public class Main {
                     System.out.println("Password: ");
                     passWord = sc.nextLine();
 
-                    boolean signedUp = userService.signUp(name, userName, passWord);
-
-                    if(signedUp)
+                    try {
+                        userService.signUp(name, userName, passWord);
                         System.out.println("SignUp Successful !!. You can Login Now.");
-                    else
-                        System.out.println("SignUp Failed.");
+                    }
+                    catch (TicketBookingException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
 
                 case 3:
@@ -99,18 +101,18 @@ public class Main {
                     System.out.println("Password: ");
                     passWord = sc.nextLine();
 
-                    Admin admin = adminService.adminLogin(codeName, passWord);
-
-                    if(admin != null) {
+                    try {
+                        Admin admin = adminService.adminLogin(codeName, passWord);
                         System.out.println("Admin Login Successful !! Welcome Admin "+ admin.getAdminCodeName());
                         new AdminMenuHandler(admin, trainService, trainRepo, ticketRepo, userRepo, sc, gson).adminMenu();
                     }
-                    else
-                        System.out.println("Admin Login Failed. Wrong Codename / Password. Try Again");
+                    catch (TicketBookingException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
 
                 default:
-                    System.out.println("Invalid Choice !! 🤐");
+                    System.out.println("Invalid Choice !!");
                     break;
             }
 

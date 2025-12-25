@@ -1,5 +1,6 @@
 package org.ticket.booking.system.service;
 
+import org.ticket.booking.system.exception.*;
 import org.ticket.booking.system.model.User;
 import org.ticket.booking.system.repository.UserRepository;
 import org.ticket.booking.system.util.PasswordUtil;
@@ -15,10 +16,10 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public boolean signUp(String name, String username, String password) {
+    public void signUp(String name, String username, String password) {
         boolean success = false;
         if(name.length() == 0 || username.length() == 0 || password.length() == 0) {
-            return success;
+            throw new InvalidInputException("Name, Username or Password cannot be blank !!");
         }
 
         List<User> users = userRepo.getUsers();
@@ -26,8 +27,7 @@ public class UserService {
 
         for(User user : users) {
             if(user.getUsername().equalsIgnoreCase(username)) {
-                System.out.println("Username already taken !!");
-                return success;
+                throw new UsernameAlreadyExistsException("Username Already Taken !!");
             }
         }
 
@@ -36,22 +36,22 @@ public class UserService {
         User user = new User(name, username, hashedPass, currentDate.toString());
 
         userRepo.addUser(user);
-        success = true;
-
-        return success;
     }
 
     public User login(String username, String password) {
 
-        String hashedPass = PasswordUtil.hashPassword(password);
+
         User user = userRepo.getUserByUserName(username);
 
-        if(user != null && user.getPasswordHash().equals(hashedPass))
-        {
-            return user;
-        }
+        if(user == null)
+            throw new UserNotFoundException("User Not Found");
 
-        return null;
+        String hashedPass = PasswordUtil.hashPassword(password);
+
+        if(!user.getPasswordHash().equals(hashedPass))
+            throw new AuthenticationException("Wrong Password !! Try Again.");
+
+        return user;
     }
 
     public User userExists(String userId) {
@@ -62,6 +62,6 @@ public class UserService {
                 return user;
         }
 
-        return null;
+        throw new UserNotFoundException("User Not Found !!");
     }
 }

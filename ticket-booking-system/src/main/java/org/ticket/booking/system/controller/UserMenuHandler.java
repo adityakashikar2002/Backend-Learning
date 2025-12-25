@@ -1,6 +1,9 @@
 package org.ticket.booking.system.controller;
 
 import com.google.gson.Gson;
+import org.ticket.booking.system.exception.TicketBookingException;
+import org.ticket.booking.system.exception.TicketNotFoundException;
+import org.ticket.booking.system.exception.TrainNotFoundException;
 import org.ticket.booking.system.model.Ticket;
 import org.ticket.booking.system.model.Train;
 import org.ticket.booking.system.model.User;
@@ -82,20 +85,26 @@ public class UserMenuHandler {
     }
 
     private void displayUserTickets(User user, TicketService ticketService, Gson gson) {
-        System.out.println("Tickets for: " + user.getUsername());
-        List<Ticket> tickets = ticketService.fetchTicketsByUserId(user.getUserId());
-
-        if (tickets.isEmpty()) {
-            System.out.println("No Tickets Found.");
-        } else {
+        try {
+            System.out.println("Tickets for: " + user.getUsername());
+            List<Ticket> tickets = ticketService.fetchTicketsByUserId(user.getUserId());
             System.out.println(gson.toJson(tickets));
         }
+        catch (TicketNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private void displayAllTrains(TrainRepository trainRepo, Gson gson) {
-        System.out.println("Below is List of All Trains: ");
-        List<Train> trains = trainRepo.getTrains();
-        System.out.println(gson.toJson(trains));
+        try {
+            System.out.println("Below is List of All Trains: ");
+            List<Train> trains = trainRepo.getTrains();
+            System.out.println(gson.toJson(trains));
+        }
+        catch (TrainNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void displayTrainsBySourceDestination(TrainService trainService, Gson gson, Scanner sc) {
@@ -105,11 +114,13 @@ public class UserMenuHandler {
         System.out.println("Destination Station: ");
         String destinationStation = sc.nextLine();
 
-        List<Train> trains = trainService.searchBySourceAndDestination(sourceStation, destinationStation);
-        if(trains.isEmpty())
-            System.out.println("No Trains Found.");
-        else
+        try {
+            List<Train> trains = trainService.searchBySourceAndDestination(sourceStation, destinationStation);
             System.out.println(gson.toJson(trains));
+        } catch (TrainNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private void bookTicket() {
@@ -122,21 +133,25 @@ public class UserMenuHandler {
         System.out.println("Book Ticket for Date (Use YYYY-MM_DD)");
         String travelDate = sc.nextLine();
 
-        boolean booked = ticketService.bookTicket(user.getUserId(),trainNo, sourceStation, destinationStation, travelDate);
-
-        if(booked)
+        try {
+            ticketService.bookTicket(user.getUserId(),trainNo, sourceStation, destinationStation, travelDate);
             System.out.println("Ticket Booked SuccessFully.");
-        else
-            System.out.println(("Ticket Booking Failed."));
+        }
+        catch (TicketBookingException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void cancelTicket() {
         System.out.println("Enter Ticket ID");
         String ticketID = sc.nextLine();
-        boolean cancelled = ticketService.cancelTicket(user.getUserId(), ticketID);
-        if(cancelled)
+
+        try {
+            ticketService.cancelTicket(user.getUserId(), ticketID);
             System.out.println("Ticket Cancelled Successfully.");
-        else
-            System.out.println("Ticket Cancellation Failed.");
+        }
+        catch (TicketBookingException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

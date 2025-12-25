@@ -1,5 +1,6 @@
 package org.ticket.booking.system.service;
 
+import org.ticket.booking.system.exception.*;
 import org.ticket.booking.system.model.Station;
 import org.ticket.booking.system.model.Ticket;
 import org.ticket.booking.system.model.Train;
@@ -14,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TicketService {
-    private TicketRepository ticketRepo;
-    private TrainRepository trainRepo;
-    private UserService userService;
-    private TrainService trainService;
+    private final TicketRepository ticketRepo;
+    private final TrainRepository trainRepo;
+    private final UserService userService;
+    private final TrainService trainService;
 
     public TicketService(TicketRepository ticketRepo, TrainRepository trainRepo, UserService userService, TrainService trainService) {
         this.ticketRepo = ticketRepo;
@@ -35,24 +36,28 @@ public class TicketService {
                 res.add(ticket);
         }
 
+        if(res.isEmpty())
+            throw new TicketNotFoundException("No Tickets Found !!");
+
         return res;
     }
 
-    public boolean bookTicket(String userId, String trainNumber, String source, String destination, String journeyDate) {
+    public void bookTicket(String userId, String trainNumber, String source, String destination, String journeyDate) {
         // Step 1: Validation
         User user = userService.userExists(userId);
-        Train train = trainService.getTrainByNumber(trainNumber);
-        boolean date = DateUtil.validDate(journeyDate);
 
-        if(user == null || train == null || date == false)
-            return false;
+        Train train = trainService.getTrainByNumber(trainNumber);
+
+        boolean date = DateUtil.validDate(journeyDate);
+        if(!date)
+            throw new InvalidDateException("Please Enter Date " + LocalDate.now().toString() + " or Later.");
 
         List<Station> stations = train.getStations();
         String departTime = "";
         String arrivalTime = "";
 
         if(stations.isEmpty())
-            return false;
+            throw new StationsNotFoundException("Sorry, No Stations Found !!");
 
         int srcIdx = -1;
         int destIdx = -1;
@@ -72,15 +77,19 @@ public class TicketService {
             }
         }
 
-        if(srcIdx == -1 || destIdx == -1 || srcIdx >= destIdx)
-            return false;
+        if(srcIdx == -1)
+            throw new StationsNotFoundException("No Source Station Match Found.");
+        if(destIdx == -1)
+            throw new StationsNotFoundException("No Destination Station Match Found.");
+        if(srcIdx >= destIdx)
+            throw new InvalidSourceToDestinationException("Source-Destination Match Not Found.");
 
         // Step 2: Seats Checking
 
         int unbookedSeats = train.getAvailableSeats();
 
         if(unbookedSeats <= 0)
-            return false;
+            throw new SeatCapacityFullException("Sorry, All Seats are Booked !!");
 
         // Step 3 : Seat Allocation
         int seatBooked =  train.getTotalSeats() - unbookedSeats + 1;
@@ -107,10 +116,10 @@ public class TicketService {
         //Step 6 : Saving and Updating to Db / Json
         trainRepo.saveTrains(allTrains);
         ticketRepo.addTicket(ticket);
-        return true;
+
     }
 
-    public boolean cancelTicket(String userId, String ticketId) {
+    public void cancelTicket(String userId, String ticketId) {
         // 1. Load Data
         List<Ticket> tickets = ticketRepo.loadTickets();
         List<Train> trains = trainRepo.getTrains();
@@ -126,28 +135,31 @@ public class TicketService {
         }
 
         // 3. Validations
-        if (targetTicket == null || targetTicket.getStatus().equals(Ticket.TicketStatus.CANCELLED) || targetTicket.getTrainId() == null) {
-            return false;
-        }
+        if (targetTicket == null)
+            throw new TicketNotFoundException("No Ticket Found !!");
+        if(targetTicket.getStatus().equals(Ticket.TicketStatus.CANCELLED))
+            throw new TicketCancelledException("Cancelled Tickets cannot be Cancelled Again !!");
+        if(targetTicket.getTrainId() == null)
+            throw new TrainNotFoundException("No Train Found.");
+
 
         // 4. Update the Train Seats
         for (Train train : trains) {
-            // NOTE: Make sure your Ticket model stores trainNumber!
+
             if (train.getTrainNumber().equals(targetTicket.getTrainNumber())) {
                 if (train.getAvailableSeats() < train.getTotalSeats()) {
-                    train.setAvailableSeats(train.getAvailableSeats() + 1); // FIXED: Added +1
+                    train.setAvailableSeats(train.getAvailableSeats() + 1);
                 }
                 break;
             }
         }
 
         // 5. Update Ticket Status
-        targetTicket.setStatus(Ticket.TicketStatus.CANCELLED); // Ensure this matches your "BOOKED" logic
+        targetTicket.setStatus(Ticket.TicketStatus.CANCELLED);
 
         // 6. Save Everything
         trainRepo.saveTrains(trains);
         ticketRepo.saveTickets(tickets);
 
-        return true;
     }
 }

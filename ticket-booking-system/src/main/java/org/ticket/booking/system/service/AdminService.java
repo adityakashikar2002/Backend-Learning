@@ -1,5 +1,8 @@
 package org.ticket.booking.system.service;
 
+import org.ticket.booking.system.exception.AuthenticationException;
+import org.ticket.booking.system.exception.TicketBookingException;
+import org.ticket.booking.system.exception.UserNotFoundException;
 import org.ticket.booking.system.model.Admin;
 import org.ticket.booking.system.repository.AdminRepository;
 
@@ -17,15 +20,17 @@ public class AdminService {
 
     public Admin adminLogin(String codeName, String password) {
 
-        String hashedPass = PasswordUtil.hashPassword(password);
         Admin admin = adminRepo.getAdminbyCodeName(codeName);
 
-        if(admin != null && admin.getPasswordHash().equals(hashedPass))
-        {
-            return admin;
-        }
+        if(admin == null)
+            throw new UserNotFoundException("Admin Not Found");
 
-        return null;
+        String hashedPass = PasswordUtil.hashPassword(password);
+
+        if(!admin.getPasswordHash().equals(hashedPass))
+            throw new AuthenticationException("Wrong Password !! Try Again.");
+
+        return admin;
     }
 
     public Admin adminExists(String adminId) {
@@ -36,6 +41,6 @@ public class AdminService {
                 return admin;
         }
 
-        return null;
+        throw new UserNotFoundException("Admin Not Found");
     }
 }
